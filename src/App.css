@@ -1,38 +1,111 @@
-.App {
-  text-align: center;
+:root {
+  --primary-color: #945d49;
+  --secondary-color: #498094;
+  --tertiary-color: #93bbca;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body,
+#root {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  min-height: 600px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#root {
+  /*overflow-y: auto;*/
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
+  height: 100%;
+}
+
+.home {
+  background: var(--secondary-color);
+  height: 80%;
+}
+
+.credits {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding-top: 2rem;
 }
 
-.App-link {
-  color: #61dafb;
+.home__layout {
+  display: grid;
+  grid-template-rows: minmax(2rem, 1fr) 2fr minmax(2rem, 1fr);
+  height: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.home__content {
+  grid-row: 2;
+}
+
+.svg-bank {
+  stroke: none;
+  stroke-width: 0;
+  stroke-dasharray: none;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 10;
+  fill: none;
+  fill-rule: nonzero;
+  opacity: 1;
+}
+
+.bank-path {
+  stroke: none;
+  stroke-width: 1;
+  stroke-dasharray: none;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 10;
+  fill: #000;
+  fill-rule: nonzero;
+  opacity: 1;
+}
+
+.navbar {
+  margin-bottom: 1rem;
+}
+
+.navbar-brand {
+  color: var(--primary-color) !important;
+}
+
+.navbar .nav-link {
+  color: var(--primary-color) !important;
+  padding: .5rem 0;
+  position: relative;
+}
+
+.navbar .nav-link::before {
+  background: var(--tertiary-color);
+  bottom: 4px;
+  content: ' ';
+  height: 2px;
+  left: 0;
+  position: absolute;
+  transition: width 200ms linear;
+  width: 100%;
+}
+
+.navbar .nav-link.active::before {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar .nav-link {
+    margin-right: .75rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .navbar .nav-link::before {
+    width: 0;
+  }
+
+  .navbar .nav-link:hover::before {
+    width: 100%;
   }
 }
