@@ -1,29 +1,34 @@
 :root {
-  --primary-color: #945d49;
-  --secondary-color: #498094;
-  --tertiary-color: #93bbca;
+  --dark-primary-color: #388E3C;
+  --light-primary-color: #C8E6C9;
+  --accent-color: #03A9F4;
+  --primary-text: #212121;
+  --primary-color: #4CAF50;
+  --text-icons: #FFFFFF;
+  --secondary-text: #757575;
+  --divider-color: #BDBDBD;
+  --main-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
 
 html,
 body,
 #root {
+  color: #2A2D34;
   overflow: hidden;
   height: 100%;
   width: 100%;
   min-height: 600px;
 }
 
-#root {
-  /*overflow-y: auto;*/
-}
-
 .main {
   height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 .home {
-  background: var(--secondary-color);
-  height: 80%;
+  background: var(--primary-color);
+  flex-grow: 1;
 }
 
 .credits {
@@ -41,6 +46,15 @@ body,
 
 .home__content {
   grid-row: 2;
+}
+
+.title {
+  color: var(--text-icons);
+}
+
+.subtitle,
+.home__text {
+  color: var(--light-primary-color);
 }
 
 .svg-bank {
@@ -62,27 +76,27 @@ body,
   stroke-linecap: butt;
   stroke-linejoin: miter;
   stroke-miterlimit: 10;
-  fill: #000;
+  fill: var(--light-primary-color);
   fill-rule: nonzero;
   opacity: 1;
 }
 
 .navbar {
-  margin-bottom: 1rem;
+  background: var(--dark-primary-color);
 }
 
 .navbar-brand {
-  color: var(--primary-color) !important;
+  color: var(--text-icons) !important;
 }
 
 .navbar .nav-link {
-  color: var(--primary-color) !important;
+  color: var(--light-primary-color) !important;
   padding: .5rem 0;
   position: relative;
 }
 
 .navbar .nav-link::before {
-  background: var(--tertiary-color);
+  background: var(--text-icons);
   bottom: 4px;
   content: ' ';
   height: 2px;
@@ -94,6 +108,28 @@ body,
 
 .navbar .nav-link.active::before {
   width: 100%;
+}
+
+.footer {
+  align-items: center;
+  background: var(--dark-primary-color);
+  color: var(--text-icons);
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.btn-main {
+  display: inline-block;
+  padding: .5rem 1rem;
+  background: var(--accent-color);
+  color: var(--text-icons);
+  margin: 0 .5rem;
+  text-decoration: none;
+  border-radius: 1rem;
+  box-shadow: var(--main-shadow);
+  text-align: center;
+  font-size: 1rem;
 }
 
 @media screen and (min-width: 768px) {
