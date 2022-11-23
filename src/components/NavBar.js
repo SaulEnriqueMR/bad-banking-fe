@@ -1,7 +1,11 @@
-import {Link, Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import AccountContext from "../state/AccountContext";
 import PageContext from "../state/PageContext";
 import {useContext} from "react";
+import Navbar from 'react-bootstrap/Navbar';
+import {Container, Nav} from "react-bootstrap";
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import {LinkContainer} from 'react-router-bootstrap'
 
 
 function NavBar() {
@@ -27,15 +31,15 @@ function NavBar() {
 	function getCustomerContent() {
 		return(
 				<>
-					<li className="nav-item">
-						<Link onClick={() => changePage('deposit')} className={`nav-link ${isActivePage('deposit') ? 'active' : ''}`} to="/Deposit/">Deposit</Link>
-					</li>
-					<li className="nav-item">
-						<Link onClick={() => changePage('withdraw')} className={`nav-link ${isActivePage('withdraw') ? 'active' : ''}`} to="/Withdraw/">Withdraw</Link>
-					</li>
-					<li className="nav-item">
-						<Link onClick={() => changePage('transactions')} className={`nav-link ${isActivePage('transactions') ? 'active' : ''}`} to="/Transactions/">Transactions</Link>
-					</li>
+					<LinkContainer to="/Deposit/">
+						<Nav.Link onClick={() => changePage('deposit')} className={`nav-link ${isActivePage('deposit') ? 'active' : ''}`}>Deposit</Nav.Link>
+					</LinkContainer>
+					<LinkContainer to="/Withdraw/">
+						<Nav.Link onClick={() => changePage('withdraw')} className={`nav-link ${isActivePage('withdraw') ? 'active' : ''}`}>Withdraw</Nav.Link>
+					</LinkContainer>
+					<LinkContainer to="/Transactions/">
+						<Nav.Link onClick={() => changePage('transactions')} className={`nav-link ${isActivePage('transactions') ? 'active' : ''}`}>Transactions</Nav.Link>
+					</LinkContainer>
 				</>
 		)
 	}
@@ -43,9 +47,9 @@ function NavBar() {
 	function getCashierContent() {
 		return (
 				<>
-					<li className="nav-item">
-						<Link onClick={() => changePage('accounts')} className={`nav-link ${isActivePage('accounts') ? 'active' : ''}`} to="/Accounts/">All accounts</Link>
-					</li>
+					<LinkContainer to="/Accounts/">
+					<Nav.Link onClick={() => changePage('accounts')} className={`nav-link ${isActivePage('accounts') ? 'active' : ''}`}>All accounts</Nav.Link>
+					</LinkContainer>
 				</>
 		)
 	}
@@ -60,33 +64,55 @@ function NavBar() {
 	
 	function getContentNotLoggedIn() {
 		return (
-				<>
-					<li className="nav-item">
-						<Link onClick={() => changePage('login')} className={`nav-link ${isActivePage('login') ? 'active' : ''}`} to="/Login/">Login</Link>
-					</li>
-					<li className="nav-item">
-						<Link onClick={() => changePage('create-account')} className={`nav-link ${isActivePage('create-account') ? 'active' : ''}`} to="/CreateAccount/">Create account</Link>
-					</li>
-				</>
+			<>
+				<LinkContainer to="/Login/">
+					<Nav.Link onClick={() => changePage('login')} className={`nav-link ${isActivePage('login') ? 'active' : ''}`}>Login</Nav.Link>
+				</LinkContainer>
+				<LinkContainer to="/CreateAccount/">
+					<Nav.Link onClick={() => changePage('create-account')} className={`nav-link ${isActivePage('create-account') ? 'active' : ''}`}>Create account</Nav.Link>
+				</LinkContainer>
+			</>
 		)
 	}
 	
+	// return (
+	// 		<>
+	// 			<nav className="navbar navbar-light navbar-expand-lg navbar-light">
+	// 				<div className="container-fluid">
+	// 					<a onClick={() => changePage('home')} className="navbar-brand" href="/#/">BadBank</a>
+	// 					<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	// 						<span className="navbar-toggler-icon"></span>
+	// 					</button>
+	// 					<div className="collapse navbar-collapse" id="navbarNav">
+	// 						<ul className="nav navbar-nav">
+	// 							{isLoggedIn() ? getContentLoggedIn() : getContentNotLoggedIn() }
+	// 						</ul>
+	// 					</div>
+	// 				</div>
+	// 			</nav>
+	// 			<Outlet />
+	// 		</>
+	// )
+	
 	return (
 			<>
-				<nav className="navbar navbar-light navbar-expand-lg navbar-light">
-					<div className="container-fluid">
-						<a onClick={() => changePage('home')} className="navbar-brand" href="/#/">BadBank</a>
-						<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-							<span className="navbar-toggler-icon"></span>
-						</button>
-						<div className="collapse navbar-collapse" id="navbarNav">
-							<ul className="nav navbar-nav">
-								{isLoggedIn() ? getContentLoggedIn() : getContentNotLoggedIn() }
-							</ul>
-						</div>
-					</div>
-				</nav>
-				<Outlet />
+				<Navbar className="navbar navbar-light navbar-expand-lg navbar-light" key="lg" expand="lg">
+					<Container>
+						<LinkContainer to="/">
+							<Navbar.Brand onClick={() => changePage('home')} className="navbar-brand">BadBank</Navbar.Brand>
+						</LinkContainer>
+						<Navbar.Toggle aria-controls="offcanvasNavbar-expand-lg" />
+						<Navbar.Offcanvas id="offcanvasNavbar-expand-lg" aria-labelledby="offcanvasNavbarLabel-expand-lg" placement="end">
+							<Offcanvas.Header closeButton></Offcanvas.Header>
+							<Offcanvas.Body>
+								<Nav className="me-auto">
+									{isLoggedIn() ? getContentLoggedIn() : getContentNotLoggedIn() }
+								</Nav>
+							</Offcanvas.Body>
+						</Navbar.Offcanvas>
+					</Container>
+				</Navbar>
+			<Outlet/>
 			</>
 	)
 }

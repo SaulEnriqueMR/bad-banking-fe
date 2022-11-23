@@ -7,7 +7,8 @@ import PageContext from "./state/PageContext";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import {useContext, useState} from "react";
+import {useState} from "react";
+import CreateAccount from "./pages/CreateAccount";
 
 function App() {
   
@@ -26,6 +27,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/Login/" element={<Login />} />
+                  <Route path="/CreateAccount/" element={<CreateAccount />} />
                 </Routes>
               </HashRouter>
               <Footer />

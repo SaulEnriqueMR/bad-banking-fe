@@ -14,21 +14,23 @@ html,
 body,
 #root {
   color: #2A2D34;
-  overflow: hidden;
-  height: 100%;
   width: 100%;
-  min-height: 600px;
+}
+
+html, body, #root, #root > main {
+  height: 100%
 }
 
 .main {
-  height: 100%;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: min-content 1fr 3rem;
+  overflow: hidden;
 }
 
 .home {
   background: var(--primary-color);
   flex-grow: 1;
+  overflow: auto;
 }
 
 .credits {
@@ -41,7 +43,6 @@ body,
 .home__layout {
   display: grid;
   grid-template-rows: minmax(2rem, 1fr) 2fr minmax(2rem, 1fr);
-  height: 100%;
 }
 
 .home__content {
@@ -116,7 +117,6 @@ body,
   color: var(--text-icons);
   display: flex;
   justify-content: center;
-  padding: 2rem 1rem;
 }
 
 .btn-main {

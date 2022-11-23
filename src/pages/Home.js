@@ -15,7 +15,7 @@ function Home() {
 					<div className="container home__layout">
 						<div className="home__content">
 							<div>
-								<h1 className="title">BadBank Landing Module</h1>
+								<h1 className="title">BadBank</h1>
 								<h2 className="subtitle">Welcome to your bank</h2>
 								<p className="home__text">Save your money with us <Link className="btn-main" to="/Login/" onClick={() => changePage('login')}>Start here</Link></p>
 								<svg version="1.1" width="256" height="256" viewBox="0 0 256 256">
