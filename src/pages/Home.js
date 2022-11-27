@@ -1,13 +1,21 @@
 import {Link} from "react-router-dom";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import PageContext from "../state/PageContext";
+import { customersApiInstance } from "../api/customers-api";
 
 function Home() {
-	const {setActivePage} = useContext(PageContext)
+	const {setActivePage} = useContext(PageContext);
+	const customersApi = customersApiInstance;
 	
 	function changePage(section) {
 		setActivePage(section);
 	}
+	
+	useEffect(() => {
+		customersApi.getCustomers().then(response => {
+			console.log(response);
+		});
+	})
 	
 	return (
 			<>
